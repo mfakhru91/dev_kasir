@@ -15,6 +15,7 @@ class CreateBarangsTable extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->integer('category_id');
             $table->string('nama_produk');
             $table->string('path_gambar');
@@ -23,6 +24,7 @@ class CreateBarangsTable extends Migration
             $table->integer('stok');
             $table->string('barcode');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

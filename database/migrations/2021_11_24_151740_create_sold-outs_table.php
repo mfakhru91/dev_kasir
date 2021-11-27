@@ -15,10 +15,11 @@ class CreateSoldOutsTable extends Migration
     {
         Schema::create('sold-outs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('invoice_id');
+            $table->unsignedInteger('invoice_id');
             $table->integer('barang_id');
             $table->string('jumlah_barang');
             $table->timestamps();
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
         });
     }
 
