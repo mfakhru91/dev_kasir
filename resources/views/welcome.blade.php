@@ -12,7 +12,7 @@
 <body>
 
     <!-- React root DOM -->
-    <div id="home">
+    <div id="register">
     </div>
 
     <!-- React JS -->

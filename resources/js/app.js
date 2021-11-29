@@ -13,5 +13,6 @@ require('./bootstrap');
  */
 
 require('./components/Example');
+require('./Pages/Auth/RegisterPage')
 require('./Pages/Home')
 require('./User')
