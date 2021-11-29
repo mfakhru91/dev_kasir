@@ -20,4 +20,6 @@ class Barang extends Model
         'stok',
         'barcode',
     ];
+
+
 }
