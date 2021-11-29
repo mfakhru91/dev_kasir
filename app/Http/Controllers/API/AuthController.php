@@ -6,7 +6,7 @@ use App\Http\Controllers\API\BaseController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends BaseController
 {
@@ -29,7 +29,7 @@ class AuthController extends BaseController
         $user = User::create($input);
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
-
+        $success['profile'] = $user;
         return $this->sendResponse($success, 'User register successfully.',201);
     }
 
@@ -41,10 +41,10 @@ class AuthController extends BaseController
     public function login(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = Auth::user();
+            $user = Auth::User();
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             $success['name'] =  $user->name;
-
+            $success['profile'] = $user;
             return $this->sendResponse($success, 'User login successfully.',200);
         } else {
             return $this->sendError('Unauthorised.', ['error' => 'Unauthorised'],401);
